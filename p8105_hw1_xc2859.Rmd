@@ -1,0 +1,12 @@
+---
+title: "p8105_hw1_xc2859"
+author: "Xiaoxue Cui"
+date: "2026-09-24"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
