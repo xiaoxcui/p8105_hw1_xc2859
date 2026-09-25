@@ -7,19 +7,20 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+Sys.setenv(LANGUAGE = "en")
 library(tidyverse)
 ```
 
 
 # Problem 1
 
-Load the penguins dataset. 
+__Load the penguins dataset__
 
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
 
-Dataset description: 
+__Describe the dataset__ 
 
 The `penguins` dataset contains 8 important variables: `r names(penguins)`. 
 
@@ -37,3 +38,16 @@ The numeric variables include:
 The dataset contains `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm. 
+
+
+
+__Draw a scatterplot of `flipper_length_mm` vs. `bill_legnth_mm`__
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(penguins, 
+       aes(x = bill_length_mm, y = flipper_length_mm, color = species)
+) + geom_point()
+
+ggsave("penguin_scatterplot.png")
+```
+
