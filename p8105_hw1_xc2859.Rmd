@@ -33,3 +33,7 @@ The numeric variables include:
 `flipper_length_mm` (range from `r range(penguins$flipper_length_mm, na.rm = TRUE)` mm), 
 `body_mass_g` (range from `r range(penguins$body_mass_g, na.rm = TRUE)` g), and
 `year` (study year of 2007, 2008 and 2009). 
+
+The dataset contains `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
+
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm. 
