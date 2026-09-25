@@ -8,7 +8,6 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 Sys.setenv(LANGUAGE = "en")
-library(tidyverse)
 ```
 
 
@@ -39,11 +38,11 @@ The dataset contains `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 
 The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)` mm. 
 
-
-
 __Draw a scatterplot of `flipper_length_mm` vs. `bill_legnth_mm`__
 
 ```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+
 ggplot(penguins, 
        aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 ) + geom_point()
@@ -51,3 +50,35 @@ ggplot(penguins,
 ggsave("penguin_scatterplot.png")
 ```
 
+
+
+
+# Problem 2
+
+__Create a data frame__
+
+```{r}
+data_df = tibble(
+  norm_samp = rnorm(10), 
+  logical_vec = norm_samp > 0, 
+  chara_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"), 
+  factor_vec = factor(
+    c("level 1", "level 2", "level 3", "level 1", "level 2", "level 3", "level 1", "level 2", "level 3", "level 1"))
+)
+
+data_df
+```
+
+The created data frame contains a random sample of size 10 from a standard Normal distribution (`norm_samp`), a logical vector indicating whether elements of the sample are greater than 0 (`logical_vec`), a character vector of length 10 (`chara_vec`), and a factor vector of length 10 (`factor_vec`), with 3 different factor “levels” (level 1, level 2, and level 3). 
+
+__Take the mean of each variable__
+
+```{r}
+mean(pull(data_df, norm_samp))
+mean(pull(data_df, logical_vec))
+mean(pull(data_df, chara_vec))
+mean(pull(data_df, factor_vec))
+```
+The mean can be calculated for only 2 variables, `norm_samp` and `logical_vec`. `norm_samp` is a numeric variable and we can naturally get its mean. `logical_vec` is a logical variable, and R treats the `TRUE` result as 1 and `FALSE` result as 0, so its mean represents the proportion of observations that are `TRUE`. Therefore, we can calculate the means for these two variables. 
+
+However, we cannot get the means of `chara_vec` and `factor_vec` because they are not numeric or logical variables. 
